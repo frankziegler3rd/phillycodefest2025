@@ -1,73 +1,47 @@
-import * as React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { PaperProvider, Card, Title, Paragraph, Button } from 'react-native-paper';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Button, useTheme } from 'react-native-paper';
+import * as DocumentPicker from 'expo-document-picker';
 
-const theme = {
-  dark: false,
-  colors: {
-    primary: 'blue',
-    accent: 'yellow',
-    background: 'white',
-    surface: 'white',
-    text: 'black',
-    disabled: '#f1f1f1',
-  },
-};
 
-// Mock data for novels
-const novels = [
-  { id: '1', title: 'The Great Adventure', description: 'A thrilling journey through unknown lands.' },
-  { id: '2', title: 'Mystery at the Castle', description: 'A mystery story set in a haunted castle.' },
-  { id: '3', title: 'The Lost Kingdom', description: 'An ancient kingdom rediscovered after centuries.' },
-];
+export default function Dash() {
 
-// User Dashboard Screen
-export default function dash() {
+  const { colors } = useTheme();
+
+  const UploadFile = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({});
+      
+      // Check if user picked a file or cancelled
+      if (result.type === 'cancel') {
+        console.log("User cancelled the document picker.");
+      } else {
+        console.log("Document selected:", result.uri); // Prints the file URI
+        console.log(result); // Prints the entire result object
+      }
+    } catch (error) {
+      console.error("Error picking document:", error);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      {/* Display User Name */}
-      <Text style={styles.header}>John Doe</Text>
-
-      {/* My Novels Section */}
-      <Text style={styles.sectionHeader}>My Novels</Text>
-
-      <FlatList
-        data={novels}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Card style={styles.card}>
-            <Card.Content>
-              <Title>{item.title}</Title>
-              <Paragraph>{item.description}</Paragraph>
-              <Button mode="contained" onPress={() => alert(`Opening ${item.title}`)}>
-                Read More
-              </Button>
-            </Card.Content>
-          </Card>
-        )}
-      />
-    </View>
+      <View style={styles.container}>
+          <Button 
+              mode='outlined'
+              onPress={UploadFile}>
+                  Upload a novel.
+          </Button>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  header: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  sectionHeader: {
+  text: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15,
   },
-  card: {
-    marginBottom: 15,
-  },
-});
+})

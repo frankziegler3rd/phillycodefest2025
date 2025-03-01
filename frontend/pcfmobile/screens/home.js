@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { Button, useTheme } from 'react-native-paper';
-import dash from './dash';
 
 export default function Home({ navigation }) {
 
@@ -21,7 +20,7 @@ export default function Home({ navigation }) {
             />
             <Button 
                 mode='outlined'
-                onPress={() => navigation.navigate('dash')}>
+                onPress={() => navigation.navigate('Dash')}>
                     Get started
             </Button>
         </View>
