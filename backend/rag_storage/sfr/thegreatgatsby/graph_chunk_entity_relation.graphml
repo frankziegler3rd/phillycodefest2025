@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d6" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d5" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d4" for="edge" attr.name="description" attr.type="string" />
+  <key id="d3" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d2" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d1" for="node" attr.name="description" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_type" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="&quot;EVENT&quot;">
+      <data key="d0">"CATEGORY"</data>
+      <data key="d1">"event refers to a historical occurrence that is being explored."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;ORGANIZATION&quot;">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"organization is related to a geographic location."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;PERSON&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"person is part of an organization."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;LOCATION&quot;">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"location is a place relevant to the context."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;DATE&quot;">
+      <data key="d0">"CATEGORY"</data>
+      <data key="d1">"date represents a specific point in time relevant to the event."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;CONCEPT&quot;">
+      <data key="d0">"CATEGORY"</data>
+      <data key="d1">"concept is an idea or notion explored in the text."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <node id="&quot;THEME&quot;">
+      <data key="d0">"CATEGORY"</data>
+      <data key="d1">"theme is a recurring topic or subject matter."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+    <edge source="&quot;EVENT&quot;" target="&quot;PERSON&quot;">
+      <data key="d3">18.0</data>
+      <data key="d4">"person is directly involved in the event, exploring into the past."</data>
+      <data key="d5">"exploration, historical significance"</data>
+      <data key="d6">chunk-597ed20e307d616b09127109bd785c24</data>
+    </edge>
+  </graph>
+</graphml>

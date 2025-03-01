@@ -1,0 +1,87 @@
+{
+  "naive": {
+    "877d556c1d6f837307183768767e5678": {
+      "return": "The document contains several interrelated vignettes from F. Scott Fitzgerald's \"The Great Gatsby\". The first chunk introduces Nick Carraway and his introduction to Jay Gatz, later known as Jay Gatsby. It describes how Gatsby worked hard and built himself up after being in dire straits.\n\nIn a subsequent section, the narrator reveals information about Gatsby’s past and his life outside of East Egg, including his relationship with Daisy Buchanan, who he had once loved but left to marry Tom Buchanan. \n\nA significant portion of the document discusses events related to a car accident involving Gatsby and Myrtle Wilson. It narrates Gatsby's feelings about the accident and how he was unjustly accused by Daisy, who felt that her husband Tom caused the incident.\n\nTowards the end, the narrator describes visiting Gatsby’s mansion one last time before leaving New York for good. He reflects on Gatsby’s unfulfilled dreams and the futility of his life given its historical setting in the United States. \n\nOverall, the document captures a complex narrative about love, success, failure, jealousy, and betrayal – themes central to \"The Great Gatsby\". The author uses first-person narration from Nick Carraway, adding a personal touch to each story within the larger context of the novel’s plot.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a summary"
+    },
+    "05280db0ce221fe4e66dc9b5f117db18": {
+      "return": "Based on the document chunks, here are some characters mentioned:\n\n1. Gatsby - The protagonist and central character in the novel. Initially a bootlegger, he later becomes involved with Daisy Buchanan.\n2. Tom Buchanan - Daisy's husband and one of the main characters. He is described as wealthy and aggressive but has an unstable temper.\n3. Jordan Baker - A friend of both Daisy and Gatsby who speaks disparagingly of her own character.\n4. Nick Carraw - The narrator of the novel, he serves as a guide to some of the other characters.\n5. Jay Gatz (or James Gatz) - This is his real name mentioned in one chunk where he talks about how he started with nothing and rose to prominence through hard work.\n6. Daisy Buchanan - Tom's wife, she represents the superficial society that the novel critiques.\n7. Jimmy - His relationship with his father, Mr. Gatz, is briefly mentioned. \n8. The unnamed man who served as a mentor to Gatsby in early life, described as a former soldier and bootlegger.\n\nThese are some of the main characters encountered or discussed throughout the document chunks. Other characters like Jordan Baker's husband and her brother appear only very briefly.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "List of all the charaters"
+    },
+    "c758fbc6f1781214ef955783ea9d95d0": {
+      "return": "I will generate a JSON representation based on the document chunks you have provided. I will aim for an accurate and concise summary while keeping to your specified structure.\n\n```json\n{\n  \"title\": \"The Great Gatsby\",\n  \"summary\": \"The story revolves around Jay Gatsby, a wealthy man who throws extravagant parties in hopes of winning back his former lover Daisy Buchanan. The novel explores themes such as the American Dream, social class, and the corruption of wealth. The characters include Jay Gatsby, Nick Carraw, Tom Buchanan, Daisy Buchanan, Jordan Baker, and Myrtle Wilson.\",\n  \"character_list\": [\n    {\n      \"name\": \"Jay Gatsby\",\n      \"desc\": \"A wealthy man who throws extravagant parties to win back his former lover, Daisy Buchanan.\"\n    },\n    {\n      \"name\": \"Nick Carraw (Carraway)\",\n      \"desc\": \"The narrator and friend of Jay Gatsby. He witnesses the various characters' actions and reactions during the story's events.\"\n    },\n    {\n      \"name\": \"Tom Buchanan\",\n      \"desc\": \"Daisy Buchanan's husband, he is a wealthy man with a gambling problem and an affair with Myrtle Wilson.\"\n    },\n    {\n      \"name\": \"Daisy Buchanan\",\n      \"desc\": \"Jay Gatsby's former lover. Her character undergoes development throughout the story as her relationships with Tom and Gatsby change.\"\n    },\n    {\n      \"name\": \"Jordan Baker\",\n      \"desc\": \"A friend of Daisy who also attends Gatsby's parties. She provides insight into the social dynamics of the characters.\"\n    },\n    {\n      \"name\": \"Myrtle Wilson\",\n      \"desc\": \"Tom Buchanan's mistress, her life is short and ends tragically due to an accident involving Tom's car.\"\n    }\n  ]\n}\n```\n\nPlease note that this JSON file represents a summary based on the provided chunks of text. It includes some characters mentioned in Nick Carraw's narration but omits specific details about their interactions or motivations as described in other sections of the document.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a json file of the book with this format, {title, summary, charater_list:[{name, desc}, ...]}"
+    }
+  },
+  "global": {
+    "15060e123ce72bfc602ce9a38cb0c21e": {
+      "return": "{\"high_level_keywords\": [\"Book details\", \"Summary and characters\"], \"low_level_keywords\": [\"title of the book\", \"summary of the book\", \"character description\"]}",
+      "cache_type": "keywords",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "Give me a json file for the book, {title:<title of the book>, summary:<summary of the book>, characters:[{name:<name of character>, desc:<description of the charater>} ...]}"
+    },
+    "fd58bf60e359c1fa3824308475293ff6": {
+      "return": "I don't have specific information about a particular book to generate a JSON response. However, I can provide an example based on fictional data:\n\n```json\n{\n  \"title\": \"Mystery in the Shadows\",\n  \"summary\": \"In this thrilling mystery novel, Detective Sarah Chen unravels a complex web of deceit and betrayal set against the backdrop of the bustling city.\",\n  \"characters\": [\n    {\n      \"name\": \"Detective Sarah Chen\",\n      \"desc\": \"A seasoned detective with sharp instincts and an unwavering commitment to justice.\"\n    },\n    {\n      \"name\": \"Raj Patel\",\n      \"desc\": \"The charismatic yet mysterious suspect who is at the center of the investigation.\"\n    }\n  ]\n}\n```\n\nThis JSON structure can be used for any book, replacing the placeholder data with actual information about a real book.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "Give me a json file for the book, {title:<title of the book>, summary:<summary of the book>, characters:[{name:<name of character>, desc:<description of the charater>} ...]}"
+    },
+    "a63d2e317edd78f7d34ce89585808fed": {
+      "return": "{\"high_level_keywords\": [\"Book\", \"Use\", \"Content\"], \"low_level_keywords\": []}",
+      "cache_type": "keywords",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "use this for the book I gave you"
+    },
+    "15f60126bb6850596d7c078f9950ca71": {
+      "return": "I need more context to understand how this relates to the previous relationship data and entities. Could you provide me with a specific excerpt from the book or additional information that aligns with the knowledge base structure?",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "use this for the book I gave you"
+    },
+    "0df18c59939111e80f4f46a68d1378f4": {
+      "return": "{\"high_level_keywords\": [\"Book\", \"Title\"], \"low_level_keywords\": []}",
+      "cache_type": "keywords",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "what is the title of the book"
+    },
+    "7dd1cf5d5176daf2050b117edca2e745": {
+      "return": "Based on the knowledge base provided, there isn't any information about a book or its title. The provided data pertains to entities and relationships related to events and persons' involvement in them rather than bibliographic details of books. Therefore, I do not have enough information to determine the title of a book from this set of data.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "what is the title of the book"
+    }
+  }
+}
