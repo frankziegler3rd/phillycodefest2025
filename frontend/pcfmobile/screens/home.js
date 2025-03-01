@@ -9,13 +9,13 @@ export default function Home({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.text, { color: colors.text }]}>
-                Welcome to bkcrunch!
+            <Text style={[styles.headerText, { color: colors.text }]}>
+                Welcome to NAMETBD!
             </Text>
             <LottieView
-                source={require('../assets/bookOpening.json')} // Path to the animation
-                autoPlay  // Starts the animation automatically
-                loop      // Loops the animation
+                source={require('../assets/bookOpening.json')} 
+                autoPlay  
+                loop      
                 style={{width: 450, height: 450}} 
             />
             <Button 
@@ -35,5 +35,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  headerText: {
+    fontSize: 32,
+    fontWeight: 'bold',
   },
 });
