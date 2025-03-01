@@ -1,0 +1,44 @@
+<!-- contains a simple chat like interface -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chat</title>
+    </head>
+    <style>
+        .user-inp {
+            font-weight: bold;
+        }
+        .ai-resp {
+            font-style: italic;
+            color: gray;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <div id="root">
+            <div id="app">
+                <h1>Chat</h1>
+                <div id="messages">
+                    {% for c in chat %}
+                    <div class="message">
+                        <div class="user-inp">{{c[0]}}:</div><br> 
+                        <div class="ai-resp">{{c[1]}}</div>
+                    </div><br>
+                    {% endfor %}
+                </div>
+                <form action="/submit" method="POST" autocomplete="off">
+                    <input type="text" id="query" name="query"/>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

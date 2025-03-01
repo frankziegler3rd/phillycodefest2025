@@ -4,11 +4,12 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#2196F3",
+    primary: "#4e63bb",
     secondary: "#64B5F6",
     background: "#1E1E1E",
     surface: "#333333",
     text: "#000000",
+    cardText: "#FFFFFF",
     onSurface: "#FFFFFF",
     disabled: "#757575",
     placeholder: "#B0BEC5",
