@@ -10,6 +10,7 @@ import os
 app = FastAPI()
 
 app.mount("/rag_storage", StaticFiles(directory="./rag_storage"), name="static")
+app.mount("/library", StaticFiles(directory="./library"), name="static")
 
 @app.get("/")
 def read_root():
@@ -31,7 +32,10 @@ class ChatParam(BaseModel):
 @app.post("/chat")
 def chat(res: ChatParam):
     book = Book(uid=res.book_id)
-    query_param = QueryParam('naive', conversation_history=[])
+    query_param = QueryParam('naive', response_type="Single Paragraph")
+    if len(res.conv_hist) != 0:
+        query_param = QueryParam('naive', conversation_history=res.conv_hist, response_type="Single Paragraph")
+
     print(res.query)
     if res.char_name == "":
         return book.rag.query(res.query, query_param)

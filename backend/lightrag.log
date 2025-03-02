@@ -4431,3 +4431,373 @@
 2025-03-02 03:21:35,080 - lightrag - INFO - Creating a new event loop in main thread.
 2025-03-02 03:21:35,082 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
 2025-03-02 03:21:38,852 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 04:20:48,562 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 04:20:48,563 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 04:20:48,564 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 04:21:04,723 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 04:21:24,923 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 04:21:24,954 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 04:21:24,956 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 04:21:24,958 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 04:21:24,960 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 04:21:24,966 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 04:21:24,967 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 04:21:42,025 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 04:21:42,052 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 04:21:42,055 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 04:21:42,057 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 04:21:42,058 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 04:21:42,064 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 04:21:42,076 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 04:21:56,667 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 04:21:56,692 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 04:21:56,695 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 04:21:56,697 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 04:21:56,698 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 04:21:56,703 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 04:21:56,705 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 04:21:59,474 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 04:22:50,533 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 04:22:50,554 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 04:22:50,556 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 04:22:50,558 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 04:22:50,559 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 04:22:50,564 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 04:22:50,565 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 05:16:00,642 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:16:00,643 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:16:00,645 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:16:04,800 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:16:20,697 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:16:20,728 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 05:16:20,731 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:16:20,733 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:16:20,736 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:16:20,742 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:16:20,744 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 05:18:36,580 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:18:36,581 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:18:36,583 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:18:41,092 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:19:30,993 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:19:30,996 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:19:30,999 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:19:31,002 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:19:31,025 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:19:31,040 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:19:31,041 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:19:33,234 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:19:52,671 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:19:52,672 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:19:52,674 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:19:52,677 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:19:52,692 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:19:52,710 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:19:52,711 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:19:54,062 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:21:01,772 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:21:01,773 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:21:01,775 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:21:01,778 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:21:01,793 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:21:01,810 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:21:01,811 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:21:02,953 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:21:21,554 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:21:21,587 - lightrag - INFO - Load KV llm_response_cache with 3 data
+2025-03-02 05:21:21,589 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:21:21,591 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:21:21,592 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:21:21,597 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:21:21,597 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:21:21,598 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 05:21:52,131 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:21:52,134 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2025-03-02 05:21:52,137 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:21:52,140 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:21:52,141 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:21:52,148 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:21:52,148 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:21:52,149 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:21:53,642 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:22:02,230 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:22:02,233 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:22:02,236 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:22:02,239 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:22:02,256 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:22:02,271 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:22:02,272 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:22:04,117 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:22:08,774 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:22:08,776 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:22:08,779 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:22:08,789 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:22:08,791 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:22:08,797 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:22:08,798 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:22:09,701 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:22:22,712 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:22:22,714 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:22:22,717 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:22:22,720 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:22:23,020 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:22:23,032 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:22:23,033 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:22:24,520 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:22:37,341 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 05:22:37,345 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:22:37,347 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:22:37,350 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 05:22:37,362 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 05:22:37,379 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:22:37,380 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:22:39,344 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:22:40,499 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:22:40,499 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:22:40,501 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:22:40,503 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:22:40,503 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:22:40,507 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:22:40,508 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:22:42,887 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:23:02,325 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:23:02,329 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:23:02,332 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:23:02,335 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:23:02,336 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:23:02,344 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:23:02,345 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 05:23:05,640 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:24:33,151 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:24:33,152 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:24:33,156 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:24:33,161 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:24:33,162 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:24:33,169 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:24:33,171 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 05:32:07,109 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:32:07,109 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:32:10,889 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:32:23,966 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:32:23,968 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:32:23,972 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:32:23,976 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:32:23,978 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:32:23,986 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:32:25,271 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:39:56,901 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:39:56,901 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:40:06,268 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:41:12,497 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:41:12,500 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:41:12,506 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:41:12,511 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:41:12,516 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:41:12,535 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:41:22,095 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:41:56,220 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:41:56,223 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:41:56,229 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:41:56,240 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:41:56,245 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:41:56,264 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:42:03,115 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:43:05,845 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:43:05,847 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:43:05,850 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:43:05,857 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:43:05,858 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:43:05,869 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:43:20,309 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 05:45:06,797 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 05:45:06,800 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 05:45:06,807 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 05:45:06,810 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 05:45:06,815 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 05:45:06,835 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 05:45:06,836 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 05:45:19,342 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:17:20,188 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:17:20,189 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:17:36,887 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:18:32,018 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:18:32,021 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:18:32,025 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:18:32,027 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:18:32,033 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:18:32,053 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:18:48,363 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:26:38,700 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:26:38,701 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:27:25,747 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:27:25,749 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:27:25,750 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:27:25,751 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:27:25,751 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:27:25,754 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:35:46,615 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:35:46,615 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:36:00,835 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:36:23,301 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:36:23,305 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:36:23,311 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:36:23,316 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:36:23,324 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:36:23,342 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:36:52,269 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:42:33,774 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:42:33,778 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:42:33,786 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:42:33,794 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:42:33,800 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:42:33,820 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:43:01,890 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:44:58,476 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:44:58,481 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:44:58,489 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:44:58,496 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:44:58,500 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:44:58,522 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:45:28,545 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:47:30,233 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/0
+2025-03-02 10:47:30,239 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:47:30,244 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:47:30,251 - lightrag - INFO - Load KV text_chunks with 42 data
+2025-03-02 10:47:30,299 - lightrag - INFO - Loaded graph from ./rag_storage/0/graph_chunk_entity_relation.graphml with 206 nodes, 111 edges
+2025-03-02 10:47:30,339 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:47:57,458 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:50:53,981 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:50:53,983 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:51:46,466 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:54:13,145 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:54:13,145 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:54:13,147 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 10:54:59,987 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:55:06,133 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:55:06,141 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:55:06,149 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:55:06,161 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:55:06,175 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:55:06,206 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:55:06,213 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 10:55:45,839 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:55:45,843 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:55:45,847 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:55:45,853 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:55:45,855 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:55:45,866 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:55:45,868 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 10:56:04,260 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:58:57,367 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:58:57,370 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:58:57,374 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:58:57,377 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:58:57,385 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:58:57,406 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:58:57,409 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 10:59:06,036 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:59:06,042 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:59:06,047 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:59:06,055 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:59:06,061 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:59:06,084 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:59:06,085 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 10:59:06,092 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 10:59:09,132 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 10:59:35,198 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 10:59:35,202 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 10:59:35,207 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 10:59:35,218 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 10:59:35,246 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 10:59:35,268 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 10:59:35,274 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:01:42,942 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:01:42,945 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:01:42,948 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:01:42,953 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:01:42,955 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:01:42,966 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:01:42,968 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:04:26,064 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:04:26,067 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:04:26,073 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:04:26,077 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:04:26,079 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:04:26,087 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:04:26,088 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:04:43,168 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:05:19,190 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:05:19,195 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:05:19,201 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:05:19,210 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:05:19,214 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:05:19,232 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:05:19,238 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:06:01,930 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:06:01,933 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:06:01,938 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:06:01,944 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:06:01,945 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:06:01,953 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:06:01,955 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:06:38,155 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:06:38,157 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:06:38,160 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:06:38,166 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:06:38,168 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:06:38,178 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:06:38,180 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:11:43,760 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:12:19,481 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:12:19,481 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 11:12:19,481 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:13:16,013 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:13:16,014 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:13:16,016 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:13:16,018 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:13:16,019 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:13:16,023 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:13:16,024 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:14:50,201 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:15:19,057 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:16:17,048 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:16:17,060 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:16:17,066 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:16:17,074 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:16:17,088 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:16:17,121 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:16:17,122 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-02 11:16:17,125 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:17:16,291 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:17:16,297 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:17:16,306 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:17:16,313 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:17:16,318 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:17:16,330 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:17:16,333 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:17:30,966 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:17:34,638 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:18:01,328 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:19:30,761 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:21:17,684 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:21:46,292 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:25:43,192 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:26:14,042 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:27:42,771 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:28:14,569 - lightrag - INFO - Logger initialized for working directory: ./rag_storage/1
+2025-03-02 11:28:14,583 - lightrag - INFO - Load KV llm_response_cache with 1 data
+2025-03-02 11:28:14,614 - lightrag - INFO - Load KV full_docs with 1 data
+2025-03-02 11:28:14,620 - lightrag - INFO - Load KV text_chunks with 64 data
+2025-03-02 11:28:14,638 - lightrag - INFO - Loaded graph from ./rag_storage/1/graph_chunk_entity_relation.graphml with 1 nodes, 0 edges
+2025-03-02 11:28:14,658 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:28:14,664 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:33:58,296 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:37:08,710 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:39:24,915 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:39:32,111 - lightrag - INFO - Non-embedding cached hit(mode:naive type:query)
+2025-03-02 11:41:59,005 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:42:07,470 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:42:41,177 - lightrag - INFO - Inserting 1 to llm_response_cache
+2025-03-02 11:46:36,891 - lightrag - INFO - Loaded document status storage with 1 records
+2025-03-02 11:46:44,056 - lightrag - INFO - Non-embedding cached missed(mode:naive type:query)
+2025-03-02 11:47:11,867 - lightrag - INFO - Inserting 1 to llm_response_cache

@@ -33,7 +33,7 @@ class Book:
         self.rag = LightRAG(
             working_dir=self.WORKING_DIR,
             llm_model_func=ollama_model_complete,
-            llm_model_name='qwen2.5:3b',
+            llm_model_name='llama3',
             embedding_func=EmbeddingFunc(
                 embedding_dim=768,
                 max_token_size=8192,
@@ -123,17 +123,23 @@ class Book:
 
             with torch.no_grad():
                 for i, character in enumerate(self.book_info["character_list"]):
-                    prompt = self.rag.query(f"give me a sentence about {character['name']}'s appearance, things like hair, eyes, facial structure, clothing, etc...", param=QueryParam(mode="naive"))
-                    image = pipe(prompt, height=512, width=512, negative_prompt="NSFW, text, cropped, low quality").images[0]
-                    image.save(f"{self.WORKING_DIR}/characters/{i}.png")
+                    self._generate_character(i, character['name'], pipe)
         except Exception as e:
             print(e)
             return False
 
         return True
+    
+    def _generate_character(self, char_id, name, pipe:StableDiffusionPipeline):
+        prompt = self.rag.query(f"give me a sentence about {name}'s appearance, things like hair, eyes, facial structure, clothing.", 
+                                param=QueryParam(mode="naive"))
+        image = pipe("Detailed face close up, " + prompt, height=512, width=512, negative_prompt="NSFW, text, cropped, low quality").images[0]
+        image.save(f"{self.WORKING_DIR}/characters/{char_id}.png")
 
 if __name__ == "__main__":
     book = Book(1)
-    while True:
-        query = input(">>> ")
-        print(book.query(query, QueryParam(mode="naive")))
+    pipe = StableDiffusionPipeline.from_pretrained("stablediffusionapi/anything-v5")
+    pipe = pipe.to("mps")
+    with torch.no_grad():
+        book._generate_character(4, "Jordan Baker", pipe)
+    
