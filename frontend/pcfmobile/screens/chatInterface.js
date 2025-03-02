@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { Button, IconButton, Switch } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import theme from '../styles/theme';
@@ -237,7 +237,7 @@ export default function ChatInterface({ route, navigation }) {
       
       // Configure axios with timeout and additional logging
       const axiosConfig = {
-        timeout: 60000, // 10 second timeout
+        timeout: 120000, // 10 second timeout
         headers: {
           'Content-Type': 'application/json',
         }
@@ -323,68 +323,80 @@ export default function ChatInterface({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <View style={styles.header}>
-        <IconButton
-          icon="arrow-left"
-          size={24}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.headerTitle}>{book.title}</Text>
-        <View style={styles.autoReadContainer}>
-          <Text style={styles.autoReadText}>Auto-read</Text>
-          <Switch
-            value={autoRead}
-            onValueChange={setAutoRead}
-            color={theme.colors.primary}
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <View style={styles.header}>
+          <IconButton
+            icon="arrow-left"
+            size={24}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.headerTitle}>{book.title}</Text>
+          <View style={styles.autoReadContainer}>
+            <Text style={styles.autoReadText}>Auto-read</Text>
+            <Switch
+              value={autoRead}
+              onValueChange={setAutoRead}
+              color={theme.colors.primary}
+            />
+          </View>
+        </View>
+  
+        <ScrollView 
+          style={styles.messagesContainer}
+          ref={scrollViewRef}
+          onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+          keyboardShouldPersistTaps="handled"
+        >
+          {messages.map((message, index) => (
+            <View 
+              key={index} 
+              style={[
+                styles.messageBubble,
+                message.sender === 'user' ? styles.userMessage : styles.botMessage
+              ]}
+            >
+              <Text style={styles.messageText}>{message.text}</Text>
+            </View>
+          ))}
+        </ScrollView>
+  
+        {/* INPUT SECTION */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={inputText}
+            onChangeText={setInputText}
+            placeholder="Type your message..."
+            placeholderTextColor={theme.colors.placeholder}
+            keyboardAppearance="dark"
+          />
+          <TouchableOpacity
+            style={styles.micButton}
+            onPressIn={startRecording}
+            onPressOut={stopRecording}
+          >
+            <IconButton
+              icon={recording ? "microphone" : "microphone-outline"}
+              size={24}
+              iconColor={recording ? theme.colors.error : theme.colors.cardText}
+            />
+          </TouchableOpacity>
+          <IconButton
+            icon="send"
+            size={24}
+            iconColor={theme.colors.cardText}
+            style={[
+              styles.sendButton,
+              { opacity: !inputText.trim() ? 0.5 : 1 }
+            ]}
+            onPress={() => sendMessage(inputText)}
+            disabled={!inputText.trim()}
           />
         </View>
-      </View>
-
-      <ScrollView 
-        style={styles.messagesContainer}
-        ref={scrollViewRef}
-        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
-      >
-        {messages.map((message, index) => (
-          <View 
-            key={index} 
-            style={[
-              styles.messageBubble,
-              message.sender === 'user' ? styles.userMessage : styles.botMessage
-            ]}
-          >
-            <Text style={styles.messageText}>{message.text}</Text>
-          </View>
-        ))}
-      </ScrollView>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          value={inputText}
-          onChangeText={setInputText}
-          placeholder="Type your message..."
-          placeholderTextColor={theme.colors.placeholder}
-        />
-        <TouchableOpacity
-          style={styles.micButton}
-          onPressIn={startRecording}
-          onPressOut={stopRecording}
-        >
-          <IconButton
-            icon={recording ? "microphone" : "microphone-outline"}
-            size={24}
-            iconColor={recording ? theme.colors.error : theme.colors.primary}
-          />
-        </TouchableOpacity>
-        <Button
-          mode="contained"
-          onPress={() => sendMessage(inputText)}
-          style={styles.sendButton}
-        >
-          Send
-        </Button>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -406,7 +418,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.colors.text,
     fontWeight: 'bold',
-    flex: 1,
+    position: 'absolute', // Ensure it stays centered
+    left: 0,
+    right: 0,
     textAlign: 'center',
   },
   messagesContainer: {
@@ -430,30 +444,35 @@ const styles = StyleSheet.create({
   messageText: {
     color: theme.colors.cardText,
   },
-  inputContainer: {
-    flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.surface,
-  },
-  input: {
-    flex: 1,
-    backgroundColor: theme.colors.surface,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    marginRight: 10,
-    color: theme.colors.text,
-  },
-  micButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 5,
-  },
-  sendButton: {
-    borderRadius: 20,
-  },
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderTopWidth: 1,
+      borderTopColor: theme.colors.surface,
+      backgroundColor: theme.colors.surface,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      width: '100%',  // Ensures it takes full width
+    },
+    input: {
+      flex: 1,  // Takes as much space as possible
+      backgroundColor: 'transparent',
+      borderRadius: 20,
+      paddingHorizontal: 15,
+      paddingVertical: 10,
+      fontSize: 16,
+      color: theme.colors.text,
+    },
+    micButton: {
+      marginLeft: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    sendButton: {
+      marginLeft: 5,
+      transform: [{ rotate: '-35deg' }],
+      marginBottom: 12,
+    },
   autoReadContainer: {
     flexDirection: 'row',
     alignItems: 'center',
