@@ -7,6 +7,7 @@ import BookChat from './screens/bookchat';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ChatInterface from './screens/chatInterface';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
           <Stack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
           <Stack.Screen name='Dash' component={Dash} options={{ headerShown: false }}/>
           <Stack.Screen name='BookChat' component={BookChat} options={{ headerShown: false }}/>
+          <Stack.Screen name='ChatInterface' component={ChatInterface} options={{ headerShown: false }}/>
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>

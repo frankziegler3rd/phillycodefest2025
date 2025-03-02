@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import theme from '../styles/theme';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function BookChat() {
 
   const route = useRoute();
+  const navigation = useNavigation();
   const { book } = route.params || {};
   console.log(book)
 
@@ -24,6 +25,7 @@ export default function BookChat() {
             buttonColor={theme.colors.primary} 
             textColor={theme.colors.cardText} 
             icon='book-education'
+            onPress={() => navigation.navigate('ChatInterface', { book })}
             style={styles.button}>
             Talk to book
           </Button>
@@ -42,6 +44,10 @@ export default function BookChat() {
             buttonColor={theme.colors.primary} 
             textColor={theme.colors.cardText} 
             icon='chat-processing'
+            onPress={() => navigation.navigate('ChatInterface', { 
+              book,
+              characterId: character.id
+            })}
             style={styles.button}>
             Chat
           </Button>
