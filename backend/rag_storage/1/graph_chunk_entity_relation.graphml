@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d2" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d1" for="node" attr.name="description" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_type" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="&quot;PAST&quot;">
+      <data key="d0">"CONCEPT"</data>
+      <data key="d1">"The 'past' is a conceptual reference point within the provided text fragment, indicating a temporal context."</data>
+      <data key="d2">chunk-597ed20e307d616b09127109bd785c24</data>
+    </node>
+  </graph>
+</graphml>

@@ -1,6 +1,7 @@
 from LightRAG.lightrag import LightRAG, QueryParam
 from LightRAG.lightrag.llm.ollama import ollama_model_complete, ollama_embed
 from LightRAG.lightrag.utils import EmbeddingFunc
+import pdfplumber
 import json
 
 
@@ -29,20 +30,24 @@ rag = LightRAG(
     ),
 )
 
-book_info = rag.query("give me a json file of the book with this format, {title, summary, character_list:[{name, desc}, ...]}", QueryParam(mode="naive"))
-print(book_info)
-try:
-    book_info = json.loads(book_info.split("```json")[1::2][0].split("```")[0].strip())
-    json.dump(book_info, open(f"{WORKING_DIR}/book_info.json", "w"), indent=4)
-except:
-    try:
-        book_info = json.loads(book_info)
-        json.dump(book_info, open(f"{WORKING_DIR}/book_info.json", "w"), indent=4)
-        exit()
-    except:
-        pass
-    with open(f"{WORKING_DIR}/book_info.txt", "w") as f: 
-        f.write(book_info)
+# book_info = rag.query("give me a json file of the book with this format, {title, summary, character_list:[{name, desc}, ...]}", QueryParam(mode="naive"))
+# print(book_info)
+# try:
+#     book_info = json.loads(book_info.split("```json")[1::2][0].split("```")[0].strip())
+#     json.dump(book_info, open(f"{WORKING_DIR}/book_info.json", "w"), indent=4)
+# except:
+#     try:
+#         book_info = json.loads(book_info)
+#         json.dump(book_info, open(f"{WORKING_DIR}/book_info.json", "w"), indent=4)
+#         exit()
+#     except:
+#         pass
+#     with open(f"{WORKING_DIR}/book_info.txt", "w") as f: 
+#         f.write(book_info)
+
+while True:
+    query = input(">> ")
+    print(rag.query(query, QueryParam(mode="naive"), system_prompt="you are Tim Cratchit (\"Tiny Tim\")"))
 
 
 
