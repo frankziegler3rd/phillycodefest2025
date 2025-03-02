@@ -12,7 +12,7 @@ export default function Dash({ navigation }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL = 'http://172.20.10.2:8000'
+  const API_URL = 'http://172.20.10.6:8000'
   const theme = useTheme();
 
   const UploadFile = async () => {

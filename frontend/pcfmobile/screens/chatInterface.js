@@ -8,7 +8,7 @@ import axios from 'axios';
 import * as FileSystem from 'expo-file-system';
 import { ELEVEN_LABS_API_KEY } from '@env';
 
-const API_URL = 'http://0.0.0.0:8000'; // Make sure this matches your backend URL
+const API_URL = 'http://172.20.10.6:8000'; // Make sure this matches your backend URL
 
 export default function ChatInterface({ route, navigation }) {
   const [messages, setMessages] = useState([]);
@@ -210,19 +210,21 @@ export default function ChatInterface({ route, navigation }) {
     try {
       // Prepare request body
       const requestBody = {
-        book_id: book.id,
-        char_id: characterId || "book", // Use characterId if provided, otherwise use narrator
+        book_id: 1,
+        char_name: "Gatsby", // Use characterId if provided, otherwise use narrator
         query: text,
-        conversation_history: updatedHistory
+        conv_hist: [] //updatedHistory
       };
 
       // Make API call
-      console.log(requestBody);
+      // console.log(requestBody);
       const response = await axios.post(`${API_URL}/chat`, requestBody);
-      console.log(response.data);
-      
+      // console.log(response);
+      const botResponse = response.data;
+      console.log(botResponse);
+        
       // Handle response
-      const botResponse = response.data.response; // Adjust based on your API response structure
+      // const botResponse = response.data; // Adjust based on your API response structure
       
       // Add bot message to chat and conversation history
       const botMessage = {
