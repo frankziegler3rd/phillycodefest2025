@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
-import { Button, IconButton, Switch } from 'react-native-paper';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import { Button, IconButton, Switch, Menu } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import theme from '../styles/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,13 +18,18 @@ export default function ChatInterface({ route, navigation }) {
   const [sound, setSound] = useState();
   const [permissionResponse, requestPermission] = Audio.usePermissions();
   const scrollViewRef = useRef();
-  const { book, characterId, characterName } = route.params;
+  const { book, characterName, characterIndex } = route.params;
   const [conversationHistory, setConversationHistory] = useState([]);
+  const [menuVisible, setMenuVisible] = useState(false);
   
   // Determine if we're chatting with a specific character or the whole book
   const isCharacterChat = Boolean(characterName);
   const chatPartner = characterName || "Book";
   const chatRole = characterName || "assistant";
+
+  const getCharacterAvatar = (bookId, charIndex) => {
+    return `${API_URL}/rag_storage/${bookId}/characters/${charIndex}.png`;
+  };
 
   useEffect(() => {
     // Initialize with a welcome message
@@ -321,6 +326,8 @@ export default function ChatInterface({ route, navigation }) {
     setInputText('');
   };
 
+  const toggleMenu = () => setMenuVisible(!menuVisible);
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <KeyboardAvoidingView 
@@ -332,16 +339,60 @@ export default function ChatInterface({ route, navigation }) {
             icon="arrow-left"
             size={24}
             onPress={() => navigation.goBack()}
+            style={styles.backButton}
           />
-          <Text style={styles.headerTitle}>{book.title}</Text>
-          <View style={styles.autoReadContainer}>
-            <Text style={styles.autoReadText}>Auto-read</Text>
-            <Switch
-              value={autoRead}
-              onValueChange={setAutoRead}
-              color={theme.colors.primary}
-            />
+          <View style={styles.headerProfile}>
+            {isCharacterChat && (
+              <>
+                <Image
+                  source={{ 
+                    uri: getCharacterAvatar(book.uid, characterIndex),
+                    headers: {
+                      'Accept': 'image/png'
+                    }
+                  }}
+                  defaultSource={require('../assets/default-avatar.png')}
+                  style={styles.headerAvatar}
+                />
+                <Text style={styles.headerTitle}>
+                  {characterName}
+                </Text>
+              </>
+            )}
+            {!isCharacterChat && (
+              <Text style={styles.headerTitle}>
+                {book.title}
+              </Text>
+            )}
           </View>
+          <Menu
+            visible={menuVisible}
+            onDismiss={toggleMenu}
+            anchor={
+              <IconButton
+                icon="dots-vertical"
+                size={24}
+                iconColor={theme.colors.cardText}
+                onPress={toggleMenu}
+              />
+            }
+            contentStyle={styles.menuContent}
+          >
+            <Menu.Item
+              title="Auto-read"
+              leadingIcon={() => (
+                <Switch
+                  value={autoRead}
+                  onValueChange={(value) => {
+                    setAutoRead(value);
+                    setMenuVisible(false);
+                  }}
+                  color={theme.colors.primary}
+                />
+              )}
+              style={styles.menuItem}
+            />
+          </Menu>
         </View>
   
         <ScrollView 
@@ -354,11 +405,30 @@ export default function ChatInterface({ route, navigation }) {
             <View 
               key={index} 
               style={[
-                styles.messageBubble,
-                message.sender === 'user' ? styles.userMessage : styles.botMessage
+                styles.messageRow,
+                message.sender === 'user' ? styles.userMessageRow : styles.botMessageRow
               ]}
             >
-              <Text style={styles.messageText}>{message.text}</Text>
+              {message.sender === 'bot' && isCharacterChat && (
+                <Image
+                  source={{ 
+                    uri: getCharacterAvatar(book.uid, characterIndex),
+                    headers: {
+                      'Accept': 'image/png'
+                    }
+                  }}
+                  defaultSource={require('../assets/default-avatar.png')}
+                  style={styles.messageAvatar}
+                />
+              )}
+              <View 
+                style={[
+                  styles.messageBubble,
+                  message.sender === 'user' ? styles.userMessage : styles.botMessage
+                ]}
+              >
+                <Text style={styles.messageText}>{message.text}</Text>
+              </View>
             </View>
           ))}
         </ScrollView>
@@ -413,14 +483,27 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.surface,
     justifyContent: 'space-between',
+    height: 60, // Fixed height for consistency
+  },
+  backButton: {
+    marginRight: 8,
+  },
+  headerProfile: {
+    alignItems: 'center', // Center items vertically
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 50,
+  },
+  headerAvatar: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    marginBottom: 4, // Add space between avatar and name
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: 14, // Slightly smaller font for the name
     color: theme.colors.text,
     fontWeight: 'bold',
-    position: 'absolute', // Ensure it stays centered
-    left: 0,
-    right: 0,
     textAlign: 'center',
   },
   messagesContainer: {
@@ -473,15 +556,27 @@ const styles = StyleSheet.create({
       transform: [{ rotate: '-35deg' }],
       marginBottom: 12,
     },
-  autoReadContainer: {
+  messageRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
-    right: 10,
+    alignItems: 'flex-end',
+    marginVertical: 5,
   },
-  autoReadText: {
-    color: theme.colors.text,
+  userMessageRow: {
+    justifyContent: 'flex-end',
+  },
+  botMessageRow: {
+    justifyContent: 'flex-start',
+  },
+  messageAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
     marginRight: 8,
-    fontSize: 12,
+  },
+  menuContent: {
+    backgroundColor: theme.colors.surface,
+  },
+  menuItem: {
+    paddingRight: 16,
   },
 }); 

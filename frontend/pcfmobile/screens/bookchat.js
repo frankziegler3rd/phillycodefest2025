@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ScrollView, StyleSheet, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import theme from '../styles/theme';
 import { useRoute, useNavigation } from '@react-navigation/native';
@@ -10,7 +10,11 @@ export default function BookChat() {
   const route = useRoute();
   const navigation = useNavigation();
   const { book } = route.params || {};
-  console.log(book)
+  const API_URL = 'http://172.20.10.6:8000';
+
+  const getCharacterAvatar = (bookId, charIndex) => {
+    return `${API_URL}/rag_storage/${bookId}/characters/${charIndex}.png`;
+  };
 
   return (
     <SafeAreaView style={styles.safeContainer}>
@@ -34,7 +38,16 @@ export default function BookChat() {
         <Text style={styles.sectionTitle}>Characters:</Text>
         {book.character_list.map((character, index) => (
         <View key={character.name || index} style={styles.characterContainer}>
-          <View style={styles.avatar} />
+          <Image 
+            source={{ 
+              uri: getCharacterAvatar(book.uid, index),
+              headers: {
+                'Accept': 'image/png'
+              }
+            }}
+            defaultSource={require('../assets/default-avatar.png')}
+            style={styles.avatar}
+          />
           <View style={styles.characterInfo}>
             <Text style={styles.characterTitle}>{character.name}</Text>
             <Text style={styles.characterDescription}>{character.desc}</Text>
@@ -46,7 +59,8 @@ export default function BookChat() {
             icon='chat-processing'
             onPress={() => navigation.navigate('ChatInterface', { 
               book,
-              characterName: character.name
+              characterName: character.name,
+              characterIndex: index
             })}
             style={styles.button}>
             Chat
