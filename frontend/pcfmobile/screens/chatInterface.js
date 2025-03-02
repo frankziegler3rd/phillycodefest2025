@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Image, Animated, Pressable } from 'react-native';
 import { Button, IconButton, Switch, Menu } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import theme from '../styles/theme';
@@ -21,9 +21,16 @@ export default function ChatInterface({ route, navigation }) {
   const { book, characterName, characterIndex } = route.params;
   const [conversationHistory, setConversationHistory] = useState([]);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [micAnimation] = useState(new Animated.Value(1));
+  const [characterMenuVisible, setCharacterMenuVisible] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
+  const pulseAnimation = useRef(null);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const profileRef = useRef();
   
   // Determine if we're chatting with a specific character or the whole book
   const isCharacterChat = Boolean(characterName);
+  console.log(characterName);
   const chatPartner = characterName || "Book";
   const chatRole = characterName || "assistant";
 
@@ -151,7 +158,7 @@ export default function ChatInterface({ route, navigation }) {
   const textToSpeech = async (text) => {
     try {
       const response = await fetch(
-        "https://api.elevenlabs.io/v1/text-to-speech/cgSgspJ2msm6clMCkdW9?output_format=mp3_44100_128",
+        "https://api.elevenlabs.io/v1/text-to-speech/TX3LPaxmHKxFdv7VOQHJ?output_format=mp3_44100_128",
         {
           method: 'POST',
           headers: {
@@ -226,6 +233,7 @@ export default function ChatInterface({ route, navigation }) {
       const requestBody = {
         book_id: book.uid,
         query: text,
+        char_name: "",
         conv_hist: updatedHistory.map(msg => ({
           role: msg.role,
           content: msg.content
@@ -269,9 +277,9 @@ export default function ChatInterface({ route, navigation }) {
         }]);
 
         // If auto-read is enabled, convert bot message to speech
-        if (autoRead) {
+        // if (autoRead) {
           textToSpeech(botResponse);
-        }
+        // }
 
       } catch (axiosError) {
         // Detailed axios error logging
@@ -328,6 +336,61 @@ export default function ChatInterface({ route, navigation }) {
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
+  const startPulseAnimation = () => {
+    pulseAnimation.current = Animated.loop(
+      Animated.sequence([
+        Animated.timing(micAnimation, {
+          toValue: 1.2,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(micAnimation, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+    pulseAnimation.current.start();
+  };
+
+  const stopPulseAnimation = () => {
+    if (pulseAnimation.current) {
+      pulseAnimation.current.stop();
+      Animated.timing(micAnimation, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
+
+  const handleCharacterChange = (character, index) => {
+    // First close the menu
+    setCharacterMenuVisible(false);
+    
+    // Navigate to the new character chat
+    navigation.replace('ChatInterface', {
+      book,
+      characterName: character.name,
+      characterIndex: index,
+      isCharacterChat: true
+    });
+  };
+
+  const showCharacterMenu = () => {
+    if (profileRef.current && isCharacterChat) {
+      profileRef.current.measure((x, y, width, height, pageX, pageY) => {
+        const centerX = pageX + (width / 2);
+        setMenuPosition({
+          x: centerX - 140,
+          y: pageY + height + 8
+        });
+        setCharacterMenuVisible(true);
+      });
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <KeyboardAvoidingView 
@@ -335,63 +398,96 @@ export default function ChatInterface({ route, navigation }) {
         style={{ flex: 1 }}
       >
         <View style={styles.header}>
-          <IconButton
-            icon="arrow-left"
-            size={24}
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}
-          />
-          <View style={styles.headerProfile}>
-            {isCharacterChat && (
+          <View style={styles.headerLeft}>
+            <IconButton
+              icon="arrow-left"
+              size={28}
+              iconColor={theme.colors.primary}
+              style={styles.headerIcon}
+              onPress={() => navigation.goBack()}
+            />
+          </View>
+          
+          <TouchableOpacity 
+            ref={profileRef}
+            style={styles.headerProfile}
+            onPress={showCharacterMenu}
+          >
+            {isCharacterChat ? (
               <>
                 <Image
                   source={{ 
                     uri: getCharacterAvatar(book.uid, characterIndex),
-                    headers: {
-                      'Accept': 'image/png'
-                    }
+                    headers: { 'Accept': 'image/png' }
                   }}
                   defaultSource={require('../assets/default-avatar.png')}
                   style={styles.headerAvatar}
                 />
-                <Text style={styles.headerTitle}>
-                  {characterName}
-                </Text>
+                <Text style={styles.headerTitle}>{characterName}</Text>
               </>
+            ) : (
+              <Text style={styles.headerTitle}>{book.title}</Text>
             )}
-            {!isCharacterChat && (
-              <Text style={styles.headerTitle}>
-                {book.title}
-              </Text>
-            )}
-          </View>
-          <Menu
-            visible={menuVisible}
-            onDismiss={toggleMenu}
-            anchor={
-              <IconButton
-                icon="dots-vertical"
-                size={24}
-                iconColor={theme.colors.cardText}
-                onPress={toggleMenu}
-              />
-            }
-            contentStyle={styles.menuContent}
-          >
-            <Menu.Item
-              title="Auto-read"
-              leadingIcon={() => (
-                <Switch
-                  value={autoRead}
-                  onValueChange={(value) => {
-                    setAutoRead(value);
-                    setMenuVisible(false);
-                  }}
-                  color={theme.colors.primary}
-                />
-              )}
-              style={styles.menuItem}
+          </TouchableOpacity>
+
+          <View style={styles.headerRight}>
+            <IconButton
+              icon="waveform"
+              size={35}
+              iconColor={theme.colors.primary}
+              style={styles.headerIcon}
+              onPress={() => navigation.navigate('VoiceChat', { 
+                book,
+                characterName,
+                characterIndex,
+                isBookChat: !isCharacterChat
+              })}
             />
+          </View>
+
+          <Menu
+            visible={characterMenuVisible}
+            onDismiss={() => setCharacterMenuVisible(false)}
+            anchor={{ x: menuPosition.x, y: menuPosition.y }}
+            contentStyle={[
+              styles.characterMenu,
+              { 
+                transform: [{ scale: characterMenuVisible ? 1 : 0.9 }],
+                
+                marginHorizontal: 16,
+              }
+            ]}
+          >
+            {book.character_list.map((character, index) => (
+              <Pressable
+                key={index}
+                onPress={() => handleCharacterChange(character, index)}
+                style={({ pressed }) => [
+                  styles.characterMenuItem,
+                  pressed && { 
+                    opacity: 0.7,
+                    backgroundColor: theme.colors.primary + '20' // Add slight highlight
+                  }
+                ]}
+              >
+                <View style={styles.menuItemContent}>
+                  <Image
+                    source={{ 
+                      uri: getCharacterAvatar(book.uid, index),
+                      headers: { 'Accept': 'image/png' }
+                    }}
+                    defaultSource={require('../assets/default-avatar.png')}
+                    style={styles.menuAvatar}
+                  />
+                  <View style={styles.menuTextContainer}>
+                    <Text style={styles.menuItemName}>{character.name}</Text>
+                    <Text style={styles.menuItemDescription} numberOfLines={1}>
+                      {character.desc}
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            ))}
           </Menu>
         </View>
   
@@ -410,16 +506,19 @@ export default function ChatInterface({ route, navigation }) {
               ]}
             >
               {message.sender === 'bot' && isCharacterChat && (
-                <Image
-                  source={{ 
-                    uri: getCharacterAvatar(book.uid, characterIndex),
-                    headers: {
-                      'Accept': 'image/png'
-                    }
-                  }}
-                  defaultSource={require('../assets/default-avatar.png')}
-                  style={styles.messageAvatar}
-                />
+                <TouchableOpacity 
+                  onPress={() => setCharacterMenuVisible(true)}
+                  style={styles.avatarContainer}
+                >
+                  <Image
+                    source={{ 
+                      uri: getCharacterAvatar(book.uid, characterIndex),
+                      headers: { 'Accept': 'image/png' }
+                    }}
+                    defaultSource={require('../assets/default-avatar.png')}
+                    style={styles.messageAvatar}
+                  />
+                </TouchableOpacity>
               )}
               <View 
                 style={[
@@ -427,7 +526,12 @@ export default function ChatInterface({ route, navigation }) {
                   message.sender === 'user' ? styles.userMessage : styles.botMessage
                 ]}
               >
-                <Text style={styles.messageText}>{message.text}</Text>
+                <Text style={[
+                  styles.messageText,
+                  message.sender === 'user' ? styles.userMessageText : styles.botMessageText
+                ]}>
+                  {message.text}
+                </Text>
               </View>
             </View>
           ))}
@@ -444,23 +548,38 @@ export default function ChatInterface({ route, navigation }) {
             keyboardAppearance="dark"
           />
           <TouchableOpacity
-            style={styles.micButton}
-            onPressIn={startRecording}
-            onPressOut={stopRecording}
+            onPressIn={() => {
+              startRecording();
+              startPulseAnimation();
+            }}
+            onPressOut={() => {
+              stopRecording();
+              stopPulseAnimation();
+            }}
+            activeOpacity={0.7}
           >
-            <IconButton
-              icon={recording ? "microphone" : "microphone-outline"}
-              size={24}
-              iconColor={recording ? theme.colors.error : theme.colors.cardText}
-            />
+            <Animated.View style={{ transform: [{ scale: micAnimation }] }}>
+              <IconButton
+                icon={recording ? "microphone" : "microphone-outline"}
+                size={24}
+                iconColor={recording ? theme.colors.error : theme.colors.primary}
+                style={[
+                  styles.micButton,
+                  { borderColor: theme.colors.primary, borderWidth: 1 }
+                ]}
+              />
+            </Animated.View>
           </TouchableOpacity>
           <IconButton
             icon="send"
             size={24}
-            iconColor={theme.colors.cardText}
+            iconColor={inputText.trim() ? theme.colors.cardText : theme.colors.text}
             style={[
               styles.sendButton,
-              { opacity: !inputText.trim() ? 0.5 : 1 }
+              inputText.trim() && { 
+                backgroundColor: theme.colors.primary,
+                transform: [] // Remove rotation when active
+              }
             ]}
             onPress={() => sendMessage(inputText)}
             disabled={!inputText.trim()}
@@ -479,87 +598,48 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    padding: 16,
+    paddingTop: 24,
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.surface,
-    justifyContent: 'space-between',
-    height: 60, // Fixed height for consistency
+    borderBottomColor: theme.colors.surfaceVariant,
+    backgroundColor: theme.colors.surface,
+    height: 120,
   },
-  backButton: {
-    marginRight: 8,
+  headerLeft: {
+    width: 60,
+    justifyContent: 'center',
   },
   headerProfile: {
-    alignItems: 'center', // Center items vertically
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 50,
+  },
+  headerRight: {
+    width: 60,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   headerAvatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    marginBottom: 4, // Add space between avatar and name
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    marginBottom: 8,
+    backgroundColor: theme.colors.surfaceVariant,
   },
   headerTitle: {
-    fontSize: 14, // Slightly smaller font for the name
+    fontSize: 16,
+    fontFamily: 'WorkSans-Medium',
     color: theme.colors.text,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   messagesContainer: {
     flex: 1,
-    padding: 10,
+    padding: 16,
   },
-  messageBubble: {
-    maxWidth: '80%',
-    padding: 10,
-    borderRadius: 15,
-    marginVertical: 5,
-  },
-  userMessage: {
-    backgroundColor: theme.colors.primary,
-    alignSelf: 'flex-end',
-  },
-  botMessage: {
-    backgroundColor: theme.colors.surface,
-    alignSelf: 'flex-start',
-  },
-  messageText: {
-    color: theme.colors.cardText,
-  },
-    inputContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderTopWidth: 1,
-      borderTopColor: theme.colors.surface,
-      backgroundColor: theme.colors.surface,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      width: '100%',  // Ensures it takes full width
-    },
-    input: {
-      flex: 1,  // Takes as much space as possible
-      backgroundColor: 'transparent',
-      borderRadius: 20,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      fontSize: 16,
-      color: theme.colors.text,
-    },
-    micButton: {
-      marginLeft: 5,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    sendButton: {
-      marginLeft: 5,
-      transform: [{ rotate: '-35deg' }],
-      marginBottom: 12,
-    },
   messageRow: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    marginVertical: 5,
+    marginVertical: 8,
   },
   userMessageRow: {
     justifyContent: 'flex-end',
@@ -567,16 +647,142 @@ const styles = StyleSheet.create({
   botMessageRow: {
     justifyContent: 'flex-start',
   },
-  messageAvatar: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+  messageBubble: {
+    maxWidth: '75%',
+    padding: 12,
+    borderRadius: 20,
+    marginVertical: 4,
+  },
+  userMessage: {
+    backgroundColor: theme.colors.primary,
+    alignSelf: 'flex-end',
+    borderTopRightRadius: 4,
+  },
+  botMessage: {
+    backgroundColor: theme.colors.surface,
+    alignSelf: 'flex-start',
+    borderTopLeftRadius: 4,
+  },
+  messageText: {
+    fontSize: 15,
+    lineHeight: 20,
+    letterSpacing: 0.25,
+    fontFamily: 'WorkSans-Regular',
+  },
+  userMessageText: {
+    color: theme.colors.cardText,
+  },
+  botMessageText: {
+    color: theme.colors.text,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.surfaceVariant,
+    backgroundColor: theme.colors.background,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    width: '100%',
+  },
+  input: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+    borderRadius: 24,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: theme.colors.text,
+    letterSpacing: 0.25,
+    fontFamily: 'WorkSans-Regular',
+  },
+  micButton: {
+    marginLeft: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+    borderRadius: 20,
+    padding: 4,
+  },
+  sendButton: {
+    marginLeft: 8,
+    marginBottom: 12,
+    backgroundColor: theme.colors.background,
+    borderRadius: 20,
+    padding: 4,
+  },
+  avatarContainer: {
+    marginTop: 16,
     marginRight: 8,
+  },
+  messageAvatar: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: theme.colors.surfaceVariant,
   },
   menuContent: {
     backgroundColor: theme.colors.surface,
+    borderRadius: theme.roundness,
+    marginTop: 8,
   },
   menuItem: {
     paddingRight: 16,
+  },
+  characterMenu: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.roundness,
+    minWidth: 280,
+    width: '90%',
+    alignSelf: 'center',
+    padding: 8,
+    elevation: 8,
+    borderWidth: 1,
+    borderColor: theme.colors.surfaceVariant,
+    top: 1,
+    zIndex: 1000,
+  },
+  characterMenuItem: {
+    height: 72,
+    marginVertical: 4,
+    backgroundColor: theme.colors.surfaceVariant,
+    borderRadius: theme.roundness,
+    overflow: 'hidden',
+  },
+  menuItemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    height: '100%',
+  },
+  menuAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginRight: 12,
+    backgroundColor: theme.colors.surface,
+  },
+  menuTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  menuItemName: {
+    fontSize: 16,
+    fontFamily: 'WorkSans-SemiBold',
+    color: theme.colors.primary,
+    marginBottom: 2,
+  },
+  menuItemDescription: {
+    fontSize: 14,
+    fontFamily: 'WorkSans-Regular',
+    color: theme.colors.text,
+    opacity: 0.8,
+  },
+  menuIcon: {
+    color: theme.colors.primary,
+  },
+  headerIcon: {
+    margin: 0,
+    backgroundColor: 'transparent',
   },
 }); 

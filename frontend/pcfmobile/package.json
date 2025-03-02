@@ -26,7 +26,8 @@
     "expo-audio": "~0.3.5",
     "expo-file-system": "~18.0.11",
     "expo-av": "~15.0.2",
-    "react-native-dotenv": "^3.4.9"
+    "react-native-dotenv": "^3.4.9",
+    "expo-font": "~13.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

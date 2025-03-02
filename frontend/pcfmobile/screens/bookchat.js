@@ -21,13 +21,16 @@ export default function BookChat() {
       <ScrollView style={styles.container}>
         <Text style={styles.title}>{book.title}</Text>
         
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{book.summary}</Text>
+        <View style={[styles.section, {
+          borderColor: theme.colors.secondary,
+          borderWidth: 1,
+        }]}>
+          <Text style={styles.summaryText}>{book.summary}</Text>
           
           <Button 
             mode="contained" 
-            buttonColor={theme.colors.primary} 
-            textColor={theme.colors.cardText} 
+            buttonColor={theme.colors.primary}
+            textColor={theme.colors.cardText}
             icon='book-education'
             onPress={() => navigation.navigate('ChatInterface', { book })}
             style={styles.button}>
@@ -37,36 +40,42 @@ export default function BookChat() {
         
         <Text style={styles.sectionTitle}>Characters:</Text>
         {book.character_list.map((character, index) => (
-        <View key={character.name || index} style={styles.characterContainer}>
-          <Image 
-            source={{ 
-              uri: getCharacterAvatar(book.uid, index),
-              headers: {
-                'Accept': 'image/png'
-              }
-            }}
-            defaultSource={require('../assets/default-avatar.png')}
-            style={styles.avatar}
-          />
-          <View style={styles.characterInfo}>
-            <Text style={styles.characterTitle}>{character.name}</Text>
-            <Text style={styles.characterDescription}>{character.desc}</Text>
+          <View 
+            key={character.name || index} 
+            style={[styles.characterContainer, {
+              borderColor: theme.colors.secondary,
+              borderWidth: 1,
+            }]}
+          >
+            <Image 
+              source={{ 
+                uri: getCharacterAvatar(book.uid, index),
+                headers: {
+                  'Accept': 'image/png'
+                }
+              }}
+              defaultSource={require('../assets/default-avatar.png')}
+              style={styles.avatar}
+            />
+            <View style={styles.characterInfo}>
+              <Text style={styles.characterTitle}>{character.name}</Text>
+              <Text style={styles.characterDescription}>{character.desc}</Text>
+            </View>
+            <Button 
+              mode="contained" 
+              buttonColor={theme.colors.primary}
+              textColor={theme.colors.cardText}
+              icon='chat-processing'
+              onPress={() => navigation.navigate('ChatInterface', { 
+                book,
+                characterName: character.name,
+                characterIndex: index
+              })}
+              style={styles.button}>
+              Chat
+            </Button>
           </View>
-          <Button 
-            mode="contained" 
-            buttonColor={theme.colors.primary} 
-            textColor={theme.colors.cardText} 
-            icon='chat-processing'
-            onPress={() => navigation.navigate('ChatInterface', { 
-              book,
-              characterName: character.name,
-              characterIndex: index
-            })}
-            style={styles.button}>
-            Chat
-          </Button>
-        </View>
-      ))}
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -82,63 +91,67 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: theme.colors.onSurface,
+    fontSize: 28,
+    fontFamily: 'WorkSans-SemiBold',
+    color: theme.colors.text,
     marginBottom: 20,
     textAlign: 'center',
   },
   section: {
     backgroundColor: theme.colors.surface,
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
+    padding: 20,
+    borderRadius: theme.roundness,
+    marginBottom: 24,
     elevation: 2,
   },
+  summaryText: {
+    fontSize: 16,
+    fontFamily: 'WorkSans-Regular',
+    color: theme.colors.text,
+    marginBottom: 16,
+    lineHeight: 24,
+    opacity: 0.9,
+  },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: theme.colors.onSurface,
-    marginBottom: 10,
-  },
-  textBox: {
-    minHeight: 60,
-    backgroundColor: theme.colors.surface,
-    borderRadius: 5,
-    padding: 10,
-    color: theme.colors.onSurface,
-    marginBottom: 10,
-  },
-  button: {
-    marginTop: 10,
+    fontSize: 22,
+    fontFamily: 'WorkSans-SemiBold',
+    color: theme.colors.text,
+    marginBottom: 16,
   },
   characterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: theme.colors.surface,
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 10,
+    padding: 16,
+    borderRadius: theme.roundness,
+    marginBottom: 12,
     elevation: 2,
   },
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: theme.colors.disabled,
-    marginRight: 10,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: theme.colors.surfaceVariant,
+    marginRight: 12,
   },
   characterInfo: {
     flex: 1,
+    marginRight: 12,
   },
   characterTitle: {
-    fontWeight: 'bold',
-    color: theme.colors.onSurface,
-    marginBottom: 5,
+    fontFamily: 'WorkSans-Medium',
+    fontSize: 16,
+    color: theme.colors.text,
+    marginBottom: 4,
   },
   characterDescription: {
-    color: '#FFFFFF', 
+    fontFamily: 'WorkSans-Regular',
+    color: theme.colors.text,
     fontSize: 14,
-    marginTop: 5,
+    opacity: 0.8,
+    lineHeight: 20,
+  },
+  button: {
+    marginTop: 8,
   },
 });

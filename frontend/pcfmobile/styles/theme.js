@@ -4,24 +4,34 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#000fc9",
-    secondary: "#64B5F6",
-    background: "#1E1E1E",
-    surface: "#333333",
+    primary: "#98D8AA",
+    secondary: "#77B28C",
+    background: "#1A1B1E",
+    surface: "#2A2B2E",
+    surfaceVariant: "#252628",
     text: "#FFFFFF",
-    cardText: "#FFFFFF",
+    cardText: "#2A2B2E",
     onSurface: "#FFFFFF",
     disabled: "#757575",
-    placeholder: "#B0BEC5",
-    error: "#E57373",
+    placeholder: "#9EA0A4",
+    error: "#FF6B6B",
+    success: "#98D8AA",
   },
+  roundness: 16,
   fonts: {
     ...DefaultTheme.fonts,
-    labelLarge: {
-      fontFamily: "System",
-      fontWeight: "bold", 
-      fontSize: 16,
+    regular: {
+      fontFamily: "WorkSans-Regular",
     },
+    medium: {
+      fontFamily: "WorkSans-Medium",
+    },
+    light: {
+      fontFamily: "WorkSans-Light",
+    },
+    semiBold: {
+      fontFamily: "WorkSans-SemiBold",
+    }
   },
 };
 
