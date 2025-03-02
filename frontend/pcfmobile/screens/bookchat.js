@@ -46,7 +46,7 @@ export default function BookChat() {
             icon='chat-processing'
             onPress={() => navigation.navigate('ChatInterface', { 
               book,
-              characterId: character.id
+              characterName: character.name
             })}
             style={styles.button}>
             Chat

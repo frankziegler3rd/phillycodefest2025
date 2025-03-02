@@ -8,9 +8,9 @@ import axios from 'axios';
 import * as FileSystem from 'expo-file-system';
 import { ELEVEN_LABS_API_KEY } from '@env';
 
-const API_URL = 'http://172.20.10.6:8000'; // Make sure this matches your backend URL
-
 export default function ChatInterface({ route, navigation }) {
+  const API_URL = 'http://172.20.10.6:8000';
+  
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [recording, setRecording] = useState();
@@ -18,18 +18,27 @@ export default function ChatInterface({ route, navigation }) {
   const [sound, setSound] = useState();
   const [permissionResponse, requestPermission] = Audio.usePermissions();
   const scrollViewRef = useRef();
-  const { book, characterId } = route.params;
+  const { book, characterId, characterName } = route.params;
   const [conversationHistory, setConversationHistory] = useState([]);
+  
+  // Determine if we're chatting with a specific character or the whole book
+  const isCharacterChat = Boolean(characterName);
+  const chatPartner = characterName || "Book";
+  const chatRole = characterName || "assistant";
 
   useEffect(() => {
     // Initialize with a welcome message
-    const welcomeMsg = `Welcome! You can now chat about "${book.title}". Feel free to type or hold the mic button to speak.`;
+    const welcomeMsg = isCharacterChat 
+      ? `You are now chatting with ${characterName} from "${book.title}". Feel free to type or hold the mic button to speak.`
+      : `Welcome! You can now chat about "${book.title}". Feel free to type or hold the mic button to speak.`;
+    
     setMessages([{
       text: welcomeMsg,
       sender: 'bot'
     }]);
+    
     setConversationHistory([{
-      role: "character",
+      role: chatRole,
       content: welcomeMsg
     }]);
   }, []);
@@ -137,7 +146,7 @@ export default function ChatInterface({ route, navigation }) {
   const textToSpeech = async (text) => {
     try {
       const response = await fetch(
-        "https://api.elevenlabs.io/v1/text-to-speech/CwhRBWXzGAHq8TQ4Fs17?output_format=mp3_44100_128",
+        "https://api.elevenlabs.io/v1/text-to-speech/cgSgspJ2msm6clMCkdW9?output_format=mp3_44100_128",
         {
           method: 'POST',
           headers: {
@@ -208,46 +217,102 @@ export default function ChatInterface({ route, navigation }) {
     setConversationHistory(updatedHistory);
 
     try {
-      // Prepare request body
+      // Prepare request body based on chat type
       const requestBody = {
-        book_id: 1,
-        char_name: "Gatsby", // Use characterId if provided, otherwise use narrator
+        book_id: book.uid,
         query: text,
-        conv_hist: [] //updatedHistory
+        conv_hist: updatedHistory.map(msg => ({
+          role: msg.role,
+          content: msg.content
+        }))
+      };
+      
+      if (isCharacterChat) {
+        requestBody.char_name = characterName;
+      }
+
+      // Debug logs
+      console.log('API URL:', API_URL);
+      console.log('Request body:', JSON.stringify(requestBody, null, 2));
+      
+      // Configure axios with timeout and additional logging
+      const axiosConfig = {
+        timeout: 60000, // 10 second timeout
+        headers: {
+          'Content-Type': 'application/json',
+        }
       };
 
-      // Make API call
-      // console.log(requestBody);
-      const response = await axios.post(`${API_URL}/chat`, requestBody);
-      // console.log(response);
-      const botResponse = response.data;
-      console.log(botResponse);
+      try {
+        // Make API call with more detailed error handling
+        const response = await axios.post(`${API_URL}/chat`, requestBody, axiosConfig);
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        const botResponse = response.data;
+        console.log('Bot response:', botResponse);
         
-      // Handle response
-      // const botResponse = response.data; // Adjust based on your API response structure
-      
-      // Add bot message to chat and conversation history
-      const botMessage = {
-        text: botResponse,
-        sender: 'bot'
-      };
-      
-      setMessages(prev => [...prev, botMessage]);
-      setConversationHistory(prev => [...prev, {
-        role: "character",
-        content: botResponse
-      }]);
+        // Add bot message to chat and conversation history
+        const botMessage = {
+          text: botResponse,
+          sender: 'bot'
+        };
+        
+        setMessages(prev => [...prev, botMessage]);
+        setConversationHistory(prev => [...prev, {
+          role: chatRole,
+          content: botResponse
+        }]);
 
-      // If auto-read is enabled, convert bot message to speech
-      if (autoRead) {
-        textToSpeech(botResponse);
+        // If auto-read is enabled, convert bot message to speech
+        if (autoRead) {
+          textToSpeech(botResponse);
+        }
+
+      } catch (axiosError) {
+        // Detailed axios error logging
+        console.error('Axios error details:', {
+          message: axiosError.message,
+          code: axiosError.code,
+          stack: axiosError.stack,
+          config: {
+            url: axiosError.config?.url,
+            method: axiosError.config?.method,
+            headers: axiosError.config?.headers,
+            timeout: axiosError.config?.timeout,
+          },
+          response: axiosError.response ? {
+            status: axiosError.response.status,
+            statusText: axiosError.response.statusText,
+            data: axiosError.response.data,
+            headers: axiosError.response.headers,
+          } : 'No response',
+          isNetworkError: axiosError.isAxiosError && !axiosError.response,
+        });
+
+        // Check if it's a CORS issue
+        if (axiosError.message.includes('CORS')) {
+          console.error('Possible CORS issue detected');
+        }
+
+        // Check if it's a timeout
+        if (axiosError.code === 'ECONNABORTED') {
+          console.error('Request timed out');
+        }
+
+        // Check if it's a network connectivity issue
+        if (!axiosError.response) {
+          console.error('Network connectivity issue - no response received');
+          console.log('Current network status:', navigator.onLine);
+        }
+
+        throw axiosError; // Re-throw to be caught by outer catch block
       }
 
     } catch (error) {
-      console.error('Error sending message to backend:', error);
-      // Show error message in chat
+      console.error('Final error handler:', error);
+      // Show error message in chat with more detail
       const errorMessage = {
-        text: "Sorry, there was an error processing your message. Please try again.",
+        text: `Error: ${error.message}. Please check your connection and try again.`,
         sender: 'bot'
       };
       setMessages(prev => [...prev, errorMessage]);
