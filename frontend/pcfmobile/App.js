@@ -6,11 +6,13 @@ import Dash from './screens/dash'
 import BookChat from './screens/bookchat';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    <SafeAreaProvider>
     <NavigationContainer>
       <PaperProvider theme={Theme}>
         <Stack.Navigator initialRouteName="Home">
@@ -20,6 +22,7 @@ export default function App() {
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

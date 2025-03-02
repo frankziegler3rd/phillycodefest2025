@@ -3,18 +3,16 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-nat
 import { Button, Card, useTheme } from 'react-native-paper';
 import * as DocumentPicker from 'expo-document-picker';
 import axios from 'axios';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const favoriteConversations = [
-  { id: '1', title: 'Conversation with Alice', description: 'Discussing the latest trends in technology.' },
-  { id: '2', title: 'Conversation with Bob', description: 'A deep dive into space exploration.' },
-];
+// Todo: favorite conversations
 
 export default function Dash({ navigation }) {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const API_URL = 'http://172.20.10.2:8000'
   const theme = useTheme();
 
   const UploadFile = async () => {
@@ -30,42 +28,18 @@ export default function Dash({ navigation }) {
     }
   };
 
-
-  /*
-  * Expects and stores a JSON object of the form:
-  * { "books" : 
-  *   [ {"title" : "Great Gatsby",
-  *      "Summary" : "...", 
-  *      "characterList" :
-  *         [ { charName : "Daisy Buchanon", "charSummary" : "...", ...}, ... ]
-  *     }
-  *   ]
-  */
+  // AXIOS GET HERE
   const getBooks = async () => {
     try {
-      // Simulating API request
-      // const response = await axios.get('/API_URL');
-      // setBooks(response.data);
-  
-      setBooks(
-        [
-          { id: 1,
-            title: "Great Gatsby", 
-            summary: "Eh yo my name is fuckin Gatsby I'm walkin eaaaaaa", 
-            characterList: [
-              { charName: "Daisy Buchanon", charSummary: "..." }
-            ]
-          }
-        ]
-      );
-  
+      const response = await axios.get(API_URL);
+      setBooks(response.data);
     } catch (err) {
       setError(err.message);
+      console.log(err.message)
     } finally {
       setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     getBooks();
@@ -75,49 +49,45 @@ export default function Dash({ navigation }) {
   if (error) return <Text style={styles.errorText}>Error: {error}</Text>;
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}> 
-      <View style={styles.header}>
-        <Text style={[styles.headerText, { color: theme.colors.onSurface }]}>Hello John Doe!</Text>
-        <Button 
-          mode="contained"
-          buttonColor={theme.colors.primary}
-          textColor={theme.colors.cardText}
-          onPress={UploadFile}
-          style={styles.uploadButton}
-        >
-          Upload a novel
-        </Button>
-      </View>
+    <SafeAreaView style={[styles.safeContainer, {backgroundColor: theme.colors.background}]}>
+      <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}> 
+        <View style={styles.header}>
+          <Text style={[styles.headerText, { color: theme.colors.onSurface }]}>Hi, you</Text>
+          <Button 
+            mode="contained"
+            buttonColor={theme.colors.primary}
+            textColor={theme.colors.cardText}
+            onPress={UploadFile}
+            icon='cloud-upload'
+            style={styles.uploadButton}
+          >
+            Upload a novel
+          </Button>
+        </View>
 
-      <View style={styles.section}>
-        <Text style={[styles.sectionHeader, { color: theme.colors.onSurface }]}>My Novels</Text>
-        {books.map((book) => (
-          <Card key={book.id} style={[styles.card, { backgroundColor: theme.colors.surface }]}
-                onPress={() => navigation.navigate('BookChat', { book })}>
-            <Card.Content>
-              <Text style={[styles.cardTitle, { color: theme.colors.cardText }]}>{book.title}</Text>
-              <Text style={[styles.cardDescription, { color: theme.colors.cardText }]}>{book.summary}</Text>
-            </Card.Content>
-          </Card>
-        ))}
-      </View>
-
-      <View style={styles.section}>
-        <Text style={[styles.sectionHeader, { color: theme.colors.onSurface }]}>Favorite Conversations</Text>
-        {favoriteConversations.map((conversation) => (
-          <Card key={conversation.id} style={[styles.card, { backgroundColor: theme.colors.surface }]}> 
-            <Card.Content>
-              <Text style={[styles.cardTitle, { color: theme.colors.cardText }]}>{conversation.title}</Text>
-              <Text style={[styles.cardDescription, { color: theme.colors.cardText }]}>{conversation.description}</Text>
-            </Card.Content>
-          </Card>
-        ))}
-      </View>
-    </ScrollView>
+        <View style={styles.section}>
+          <Text style={[styles.sectionHeader, { color: theme.colors.onSurface }]}>My Novels</Text>
+          {books.map((book) => (
+            <Card key={book.title} style={[styles.card, { backgroundColor: theme.colors.surface }]}
+                  onPress={() => navigation.navigate('BookChat', { book })}>
+              <Card.Content>
+                <Text style={[styles.cardTitle, { color: theme.colors.cardText }]}>{book.title}</Text>
+                <Text style={[styles.cardDescription, { color: theme.colors.cardText }]}>
+                  {book.summary.length > 50 ? book.summary.slice(0, 50) + "..." : book.summary}
+                </Text>
+              </Card.Content>
+            </Card>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     padding: 20,

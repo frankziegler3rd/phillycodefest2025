@@ -4,11 +4,11 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#4e63bb",
+    primary: "#000fc9",
     secondary: "#64B5F6",
     background: "#1E1E1E",
     surface: "#333333",
-    text: "#000000",
+    text: "#FFFFFF",
     cardText: "#FFFFFF",
     onSurface: "#FFFFFF",
     disabled: "#757575",
@@ -19,8 +19,8 @@ const theme = {
     ...DefaultTheme.fonts,
     labelLarge: {
       fontFamily: "System",
-      fontWeight: "bold", // Use a valid weight (regular, medium, bold)
-      fontSize: 16, // Define an explicit font size
+      fontWeight: "bold", 
+      fontSize: 16,
     },
   },
 };
