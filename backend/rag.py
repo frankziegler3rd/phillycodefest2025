@@ -1,8 +1,9 @@
 from LightRAG.lightrag import LightRAG, QueryParam
 from LightRAG.lightrag.llm.ollama import ollama_model_complete, ollama_embed
 from LightRAG.lightrag.utils import EmbeddingFunc
+from diffusers import StableDiffusionPipeline
+import torch
 import pdfplumber
-
 
 import argparse
 import json
@@ -49,9 +50,18 @@ class Book:
 
         if not os.path.exists(f"{self.WORKING_DIR}/book_info.json"):
             assert self.generate_book_info(), f"failed to generate book info for book {str(uid)}"
-        
+
+            # adding char_ids for ease of use
+            for i, character in enumerate(self.book_info["character_list"]):
+                character["char_id"] = i
+
         self.book_info = json.load(open(f"{self.WORKING_DIR}/book_info.json", "r"))
 
+        if not os.path.exists(f"{self.WORKING_DIR}/characters"):
+            print("generating character avatars...")
+            os.mkdir(f"{self.WORKING_DIR}/characters")
+            assert self._generate_character_avatars(), f"failed to generate character avatars for book {str(uid)}"
+        
         assert self.book_info.keys() == {"title", "summary", "character_list", "uid"}, f'book {str(uid)} info keys are not valid'
 
         print(f"book {str(uid)} is ready to use")
@@ -87,7 +97,6 @@ class Book:
         """
         book_info = self.rag.query("give me a json file of the book with this format, {title, summary, character_list:[{name, desc}, ...]}", 
                               param=QueryParam(mode="naive"))
-        print(book_info)
         try:
             book_info = json.loads(book_info.split("```json")[1::2][0].split("```")[0].strip())
             book_info["uid"] = self.uid
@@ -104,9 +113,27 @@ class Book:
             with open(f"{self.WORKING_DIR}/book_info.txt", "w") as f: 
                 f.write(book_info)
                 f.close()
+
             return False
         
+    def _generate_character_avatars(self):
+        try:
+            pipe = StableDiffusionPipeline.from_pretrained("stablediffusionapi/anything-v5")
+            pipe = pipe.to("mps")
+
+            with torch.no_grad():
+                for i, character in enumerate(self.book_info["character_list"]):
+                    prompt = self.rag.query(f"give me a sentence about {character['name']}'s appearance, things like hair, eyes, facial structure, clothing, etc...", param=QueryParam(mode="naive"))
+                    image = pipe(prompt, height=512, width=512, negative_prompt="NSFW, text, cropped, low quality").images[0]
+                    image.save(f"{self.WORKING_DIR}/characters/{i}.png")
+        except Exception as e:
+            print(e)
+            return False
+
+        return True
 
 if __name__ == "__main__":
     book = Book(1)
-    print(book.query("who is the main character?", QueryParam(mode="naive")))
+    while True:
+        query = input(">>> ")
+        print(book.query(query, QueryParam(mode="naive")))

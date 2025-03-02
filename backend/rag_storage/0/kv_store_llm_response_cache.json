@@ -955,6 +955,96 @@
       "embedding_min": null,
       "embedding_max": null,
       "original_prompt": "Why is that your name?"
+    },
+    "82aebd646bf2a5b986014cac69eac0ff": {
+      "return": "Ebenezer Scrooge appeared old and haggard with greying hair, sharp piercing eyes behind thick-rimmed glasses, and a stern, unyielding facial structure, dressed in an ill-fitting waistcoat and a dull suit.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Ebenezer Scrooge's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "47b34d2fb447679a904bf1d2a98973af": {
+      "return": "Bob Cratchit had a careworn and depressed face, with a remarkable expression of serious delight that he tried to repress. His clothes were worn and threadbare, fitting his modest circumstances well but not always suitable for formal occasions.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Bob Cratchit's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "b70f0e4b8096370188a03c2b4674944f": {
+      "return": "Peter Cratchit was described as being \"not proud, although his collars nearly choked him,\" and he was antantly attired with a monstrous shirt-collar, which belonged to his father. His clothes were not fashionable, but they looked suitable for the day's occasion.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Peter Cratchit's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "13c3948f17035b65c19d8c180c62e2ab": {
+      "return": "Tiny Tim bore a little crutch and was supported by an iron frame; his face had a kind expression despite his young age. He wore an old but well-mended jacket and trousers suitable for the cold weather of Christmas Eve. His bright blue eyes were often hidden behind small glasses he would pinch when he wanted to concentrate on something intently, like during the meal preparation in their modest house.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Tim Cratchit (\"Tiny Tim\")'s appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "12c3fa4d7763c0bbf23cd76dd4cb33dc": {
+      "return": "Mr. Fezziwig had white hair that hung about his neck and down his back, with no wrinkles on his face; he wore a tunic of the purest white and was bound with a lustrous belt.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Mr. Fezziwig's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "58f2430dcfefde0345d2803779fcd5f5": {
+      "return": "Fred, Scrooge's nephew, had a kind and amiable demeanor that stood in stark contrast to his uncle’s stern nature. He was usually seen wearing a bright red coat and matching gloves, with short dark hair and keen blue eyes that often sparkled with humor.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Fred, Scrooge's nephew's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "4383ea0e5eff5814abb9cd6715d3564c": {
+      "return": "The Ghost of Christmas Past appears as an elderly gentleman with greying hair and piercing eyes, dressed in Victorian-era attire.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Ghost of Christmas Past's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "c46b3fe3a356ef7e9c0042923b65d4f0": {
+      "return": "The Ghost of Christmas Present is described as having dark-brown curls that are long and free, a genial face, sparkling eye, open hand, and a holly wreath set here and there with shining icicles on its head. It is also clothed in one simple deep green robe or mantle, bordered with white fur.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Ghost of Christmas Present's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "50a6f35f4cda29e2320f5aff392880d6": {
+      "return": "The Ghost of Christmas Yet to Come has no discernible physical features or attire; it is described as \"a spectrality\" with a shadowy presence.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Ghost of Christmas Yet to Come's appearance, things like hair, eyes, facial structure, clothing, etc..."
+    },
+    "cbb57b2a7768a78d98ea3f9a10087f54": {
+      "return": "The Ghost of Christmas Past appeared as an old man with a bushy red beard and spectacles, his eyes twinkling with mischief, wearing an ill-fitting waistcoat and tights.",
+      "cache_type": "query",
+      "embedding": null,
+      "embedding_shape": null,
+      "embedding_min": null,
+      "embedding_max": null,
+      "original_prompt": "give me a sentence about Jacob Marley's Ghost's appearance, things like hair, eyes, facial structure, clothing, etc..."
     }
   }
 }
