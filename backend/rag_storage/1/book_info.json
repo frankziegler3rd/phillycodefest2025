@@ -4,22 +4,27 @@
     "summary": "This story revolves around the love affair between Jay Gatsby and Daisy Buchanan. The narrative unfolds through conversations among characters like Jordan Baker, Nick Carraw, Tom Buchanan, and many more. It delves into themes of wealth, social class, and love.",
     "character_list": [
         {
+            "char_id": 0,
             "name": "Nick Carrow",
             "desc": "The narrator who describes the events from his perspective."
         },
         {
+            "char_id": 1,
             "name": "Jay Gatsby",
             "desc": "A mysterious man who has bought a mansion next to Daisy Buchanan\u2019s house in order to see her again."
         },
         {
+            "char_id": 2,
             "name": "Daisy Buchanan",
             "desc": "The narrator's cousin, already married and with children. She is the love interest of Gatsby."
         },
         {
+            "char_id": 3,
             "name": "Tom Buchanan",
             "desc": "A wealthy man who has a mistress named Myrtle Wilson."
         },
         {
+            "char_id": 4,
             "name": "Jordan Baker",
             "desc": "A tennis player who tells a story about her encounter with Gatsby and his reputation as a womanizer. "
         }

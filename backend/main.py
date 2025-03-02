@@ -2,11 +2,14 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from typing import Union, List, Dict
 from LightRAG.lightrag import QueryParam
+from fastapi.staticfiles import StaticFiles
 from rag import Book
 import json
 import os
 
 app = FastAPI()
+
+app.mount("/rag_storage", StaticFiles(directory="./rag_storage"), name="static")
 
 @app.get("/")
 def read_root():
@@ -25,10 +28,11 @@ class ChatParam(BaseModel):
     query: str
     conv_hist: Union[List[Dict], None]
 
-@app.post("/chat/")
+@app.post("/chat")
 def chat(res: ChatParam):
     book = Book(uid=res.book_id)
     query_param = QueryParam('naive', conversation_history=[])
-    if res.char_name != -1:
-        return book.rag.query(res.query, param=query_param, system_prompt=f'you are {res.char_name}')
-    return book.rag.query(res.query, query_param)
+    print(res.query)
+    if res.char_name == "":
+        return book.rag.query(res.query, query_param)
+    return book.rag.query(res.query, param=query_param, system_prompt=f'you are {res.char_name}')
