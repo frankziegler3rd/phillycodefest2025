@@ -33,7 +33,9 @@ class Book:
         self.rag = LightRAG(
             working_dir=self.WORKING_DIR,
             llm_model_func=ollama_model_complete,
-            llm_model_name='qwen2.5:3b',
+            # llm_model_name='gemma2:9b-instruct-q4_K_M',
+            llm_model_name='phi4',
+            llm_model_kwargs={"options": {"num_ctx": 8192}},
             embedding_func=EmbeddingFunc(
                 embedding_dim=768,
                 max_token_size=8192,
@@ -46,23 +48,23 @@ class Book:
 
         if not os.path.exists(os.path.join(self.WORKING_DIR, "kv_store_full_docs.json")):
             print("digesting book...")
-            self.digest()
+            self._digest()
 
-        if not os.path.exists(f"{self.WORKING_DIR}/book_info.json"):
-            assert self.generate_book_info(), f"failed to generate book info for book {str(uid)}"
+        # if not os.path.exists(f"{self.WORKING_DIR}/book_info.json"):
+        #     assert self._generate_book_info(), f"failed to generate book info for book {str(uid)}"
 
-            # adding char_ids for ease of use
-            for i, character in enumerate(self.book_info["character_list"]):
-                character["char_id"] = i
+        #     # adding char_ids for ease of use
+        #     for i, character in enumerate(self.book_info["character_list"]):
+        #         character["char_id"] = i
 
-        self.book_info = json.load(open(f"{self.WORKING_DIR}/book_info.json", "r"))
+        # self.book_info = json.load(open(f"{self.WORKING_DIR}/book_info.json", "r"))
 
-        if not os.path.exists(f"{self.WORKING_DIR}/characters"):
-            print("generating character avatars...")
-            os.mkdir(f"{self.WORKING_DIR}/characters")
-            assert self._generate_character_avatars(), f"failed to generate character avatars for book {str(uid)}"
+        # # if not os.path.exists(f"{self.WORKING_DIR}/characters"):
+        # #     print("generating character avatars...")
+        # #     os.mkdir(f"{self.WORKING_DIR}/characters")
+        # #     assert self._generate_character_avatars(), f"failed to generate character avatars for book {str(uid)}"
         
-        assert self.book_info.keys() == {"title", "summary", "character_list", "uid"}, f'book {str(uid)} info keys are not valid'
+        # assert self.book_info.keys() == {"title", "summary", "character_list", "uid"}, f'book {str(uid)} info keys are not valid'
 
         print(f"book {str(uid)} is ready to use")
 
@@ -73,10 +75,11 @@ class Book:
         """
         Digests the book pdf file and returns a string of the book text.
         """
+        full_text = ""
         with pdfplumber.open(self.path) as pdf:
             for i, page in enumerate(pdf.pages):
-                text = page.extract_text()
-                self.rag.insert(text, ids=[i])
+                full_text += page.extract_text()
+        self.rag.insert(full_text)
     
     def _generate_book_info(self):
         """
@@ -87,7 +90,7 @@ class Book:
             "summary": str,
             "character_list": [
                 {"name": str, "desc": str},
-                ...
+                ...conda
             ],
             "uid": int
         }
@@ -133,7 +136,14 @@ class Book:
         return True
 
 if __name__ == "__main__":
-    book = Book(1)
+    book = Book(2)
     while True:
         query = input(">>> ")
-        print(book.query(query, QueryParam(mode="naive")))
+        print(book.rag.query(query, param=QueryParam('naive')))
+    # char_name = "Jay Gatsby"
+    # hist = []
+    # while True:
+    #     query = input(">>> ")
+    #     resp = book.rag.query(query, param=QueryParam('naive', conversation_history=[]), system_prompt=f'you are {char_name}')
+    #     print(resp)
+    #     hist += [{"role": "user", "content": query}, {"role": "assistant", "content": resp}]
